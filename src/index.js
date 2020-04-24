@@ -1,3 +1,16 @@
+let state = {
+  count: 0,
+  min: 0,
+  max: 10,
+  step: 1,
+};
+
+function setState(nextState) {
+  state = { ...state, ...nextState };
+
+  render();
+}
+
 const txtCountEl = document.querySelector('#txt-count');
 const btnIncrementEl = document.querySelector('#btn-increment');
 const btnDecrementEl = document.querySelector('#btn-decrement');
@@ -6,25 +19,42 @@ const inputStepEl = document.querySelector('#input-step');
 const inputMinEl = document.querySelector('#input-min');
 const inputMaxEl = document.querySelector('#input-max');
 
-btnIncrementEl.addEventListener('click', () => {
-  const number =
-    parseInt(txtCountEl.textContent) + parseInt(inputStepEl.value || '1');
-  const max = parseInt(inputMaxEl.value || '0');
+function render() {
+  txtCountEl.textContent = state.count;
+  inputMinEl.value = state.min;
+  inputMaxEl.value = state.max;
+  inputStepEl.value = state.step;
+}
 
-  txtCountEl.textContent = Math.min(number, max);
+
+btnIncrementEl.addEventListener('click', () => {
+  const number = state.count + state.step;
+  const max = state.max;
+
+  setState({ count: Math.min(number, max) });
 });
 
 btnDecrementEl.addEventListener('click', () => {
-  const number =
-    parseInt(txtCountEl.textContent) - parseInt(inputStepEl.value || '1');
-  const min = parseInt(inputMinEl.value || '0');
+  const number = state.count - state.step;
+  const min = state.min;
 
-  txtCountEl.textContent = Math.max(number, min);
+  setState({ count: Math.max(number, min) });
 });
 
 btnResetEl.addEventListener('click', () => {
-  txtCountEl.textContent = 0;
-  inputMinEl.value = 0;
-  inputMaxEl.value = 10;
-  inputStepEl.value = 1;
+  setState({ count: 0, inputMaxEl: 10, inputMinEl: 0, inputStepEl: 1 });
 });
+
+inputStepEl.addEventListener('change', e => {
+  setState({ step: +e.target.value });
+});
+
+inputStepEl.addEventListener('change', e => {
+  setState({ min: +e.target.value });
+});
+
+inputStepEl.addEventListener('change', e => {
+  setState({ max: +e.target.value });
+});
+
+render();
