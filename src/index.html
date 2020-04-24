@@ -24,23 +24,30 @@
 
     <section class="container p-4">
       <h2>Counter: <span id="txt-count">0</span></h2>
+      <h5>Remaining: <span id="txt-remaining">0</span></h5>
       <div class="form-inline mb-4">
         <label class="label mr-2">Min</label>
-        <input id="input-min" type="text" class="form-control mr-4">
+        <input id="input-min" type="text" class="form-control mr-4" />
 
         <label class="label mr-2">Max</label>
-        <input id="input-max" type="text" class="form-control">
+        <input id="input-max" type="text" class="form-control" />
       </div>
       <label class="label mr-2">Step</label>
-      <input id="input-step" type="number" class="form-control mb-2 w-25">
+      <input id="input-step" type="number" class="form-control mb-2 w-25" />
       <button id="btn-increment" class="btn btn-primary">
         <i class="fas fa-arrow-up"></i>
       </button>
       <button id="btn-decrement" class="btn btn-danger">
         <i class="fas fa-arrow-down"></i>
       </button>
-      <button id="btn-reset" class="btn btn-success">
+      <button id="btn-reset" class="btn btn-success mr-5">
         <i class="fas fa-redo-alt"></i>
+      </button>
+      <button id="btn-max" class="btn btn-primary">
+        <i class="fas fa-angle-double-up"></i>
+      </button>
+      <button id="btn-min" class="btn btn-danger">
+        <i class="fas fa-angle-double-down"></i>
       </button>
     </section>
     <script src="index.js"></script>
