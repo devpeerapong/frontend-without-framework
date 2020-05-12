@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { CounterView, withInmemoryCounter } from './framework/ReactCounter';
+
 import { RichCounterView } from './view/RichCounterView';
 import { SimpleCounterView } from './view/SimpleCounterView';
 import { InmemoryCounterController } from './controller/InmemoryCounterController';
@@ -18,3 +22,8 @@ PeakabooView(peakabooEl, {
 document.body.appendChild(richEl);
 document.body.appendChild(simpleEl);
 document.body.appendChild(peakabooEl);
+
+ReactDOM.render(
+  React.createElement(withInmemoryCounter(CounterView)),
+  document.querySelector('#react'),
+);
