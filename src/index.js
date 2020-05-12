@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CounterView, withInmemoryCounter } from './framework/ReactCounter';
+import { Counter as HookCounter } from './framework/ReactHookCounter';
+
+import Vue from 'vue';
+import VueCounter from './framework/VueCounter';
 
 import { RichCounterView } from './view/RichCounterView';
 import { SimpleCounterView } from './view/SimpleCounterView';
@@ -27,3 +31,14 @@ ReactDOM.render(
   React.createElement(withInmemoryCounter(CounterView)),
   document.querySelector('#react'),
 );
+
+ReactDOM.render(
+  React.createElement(HookCounter),
+  document.querySelector('#react-hook'),
+);
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: h => h(VueCounter),
+}).$mount('#vue');

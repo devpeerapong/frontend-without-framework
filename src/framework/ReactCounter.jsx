@@ -37,7 +37,12 @@ export function withInmemoryCounter(Component) {
     }
 
     reset() {
-      this.setState({ count: 0, inputMaxEl: 10, inputMinEl: 0, inputStepEl: 1 });
+      this.setState({
+        count: 0,
+        inputMaxEl: 10,
+        inputMinEl: 0,
+        inputStepEl: 1,
+      });
     }
 
     changeStep(step) {

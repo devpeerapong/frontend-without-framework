@@ -19,16 +19,20 @@
     }
   },
   "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "parcel-bundler": "^1.12.4",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "vue-template-compiler": "^2.6.11"
   },
   "scripts": {
     "dev": "parcel src/index.html"
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
   }
 }
