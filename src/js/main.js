@@ -4,38 +4,45 @@ const btnIncrementDOM = document.querySelector("#btn-inc");
 const btnDecrementDOM = document.querySelector("#btn-dec");
 const txtCountDOM = document.querySelector("#txt-count");
 const inputStepDOM = document.querySelector("#input-step");
-
-const options = {
-  min: 0,
-  max: 10,
-};
+const inputMinDOM = document.querySelector("#input-min");
+const inputMaxDOM = document.querySelector("#input-max");
 
 let state = {
   count: 0,
   step: 1,
+  min: 0,
+  max: 10,
 };
 
 const actions = {
   increment() {
-    setState({ count: Math.min(options.max, state.count + state.step) });
+    setState({ count: Math.min(state.max, state.count + state.step) });
   },
   decrement() {
-    setState({ count: Math.max(options.min, state.count - state.step) });
+    setState({ count: Math.max(state.min, state.count - state.step) });
   },
   changeStep(step) {
     setState({ step });
   },
+  changeMin(min) {
+    setState({ min });
+  },
+  changeMax(max) {
+    setState({ max });
+  },
   setCountToMin() {
-    setState({ count: options.min });
+    setState({ count: state.min });
   },
   setCountToMax() {
-    setState({ count: options.max });
+    setState({ count: state.max });
   },
 };
 
 function render() {
   txtCountDOM.innerText = state.count;
   inputStepDOM.value = state.step;
+  inputMinDOM.value = state.min;
+  inputMaxDOM.value = state.max;
 }
 
 function setState(newState) {
@@ -51,3 +58,11 @@ btnMaxDOM.addEventListener("click", actions.setCountToMax);
 inputStepDOM.addEventListener("change", (e) => {
   actions.changeStep(parseInt(e.target.value));
 });
+inputMinDOM.addEventListener("change", (e) => {
+  actions.changeMin(parseInt(e.target.value));
+});
+inputMaxDOM.addEventListener("change", (e) => {
+  actions.changeMax(parseInt(e.target.value));
+});
+
+render();
