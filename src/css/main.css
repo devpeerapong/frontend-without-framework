@@ -12,10 +12,15 @@ p {
   margin-bottom: 0;
 }
 
-.counter {
+.counter,
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.counter {
+  margin-bottom: 10px;
 }
 
 .counter > .count {
