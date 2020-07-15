@@ -22,13 +22,28 @@ const actions = {
     setState({ count: Math.max(state.min, state.count - state.step) });
   },
   changeStep(step) {
+    if (step > state.max - state.min) {
+      setState({ step: state.step });
+      return;
+    }
+
     setState({ step });
   },
   changeMin(min) {
-    setState({ min });
+    if (min >= state.max) {
+      setState({ min: state.min });
+      return;
+    }
+
+    setState({ min, count: Math.max(min, state.count) });
   },
   changeMax(max) {
-    setState({ max });
+    if (max <= state.min) {
+      setState({ max: state.max });
+      return;
+    }
+
+    setState({ max, count: Math.min(max, state.count) });
   },
   setCountToMin() {
     setState({ count: state.min });
