@@ -10,26 +10,26 @@ const options = {
   max: 10,
 };
 
-const state = {
+let state = {
   count: 0,
   step: 1,
 };
 
 const actions = {
   increment() {
-    state.count = Math.min(options.max, state.count + state.step);
+    setState({ count: Math.min(options.max, state.count + state.step) });
   },
   decrement() {
-    state.count = Math.max(options.min, state.count - state.step);
+    setState({ count: Math.max(options.min, state.count - state.step) });
   },
   changeStep(step) {
-    state.step = step;
+    setState({ step });
   },
   setCountToMin() {
-    state.count = options.min;
+    setState({ count: options.min });
   },
   setCountToMax() {
-    state.count = options.max;
+    setState({ count: options.max });
   },
 };
 
@@ -38,32 +38,16 @@ function render() {
   inputStepDOM.value = state.step;
 }
 
-btnIncrementDOM.addEventListener("click", () => {
-  actions.increment();
+function setState(newState) {
+  state = { ...state, ...newState };
 
   render();
-});
+}
 
-btnDecrementDOM.addEventListener("click", () => {
-  actions.decrement();
-
-  render();
-});
-
-btnMinDOM.addEventListener("click", () => {
-  actions.setCountToMin();
-
-  render();
-});
-
-btnMaxDOM.addEventListener("click", () => {
-  actions.setCountToMax();
-
-  render();
-});
-
+btnIncrementDOM.addEventListener("click", actions.increment);
+btnDecrementDOM.addEventListener("click", actions.decrement);
+btnMinDOM.addEventListener("click", actions.setCountToMin);
+btnMaxDOM.addEventListener("click", actions.setCountToMax);
 inputStepDOM.addEventListener("change", (e) => {
   actions.changeStep(parseInt(e.target.value));
-
-  render();
 });
