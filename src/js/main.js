@@ -33,30 +33,37 @@ const actions = {
   },
 };
 
+function render() {
+  txtCountDOM.innerText = state.count;
+  inputStepDOM.value = state.step;
+}
+
 btnIncrementDOM.addEventListener("click", () => {
   actions.increment();
 
-  txtCountDOM.innerText = state.count;
+  render();
 });
 
 btnDecrementDOM.addEventListener("click", () => {
   actions.decrement();
 
-  txtCountDOM.innerText = state.count;
+  render();
 });
 
 btnMinDOM.addEventListener("click", () => {
   actions.setCountToMin();
 
-  txtCountDOM.innerText = state.count;
+  render();
 });
 
 btnMaxDOM.addEventListener("click", () => {
   actions.setCountToMax();
 
-  txtCountDOM.innerText = state.count;
+  render();
 });
 
 inputStepDOM.addEventListener("change", (e) => {
   actions.changeStep(parseInt(e.target.value));
+
+  render();
 });
