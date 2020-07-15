@@ -54,10 +54,24 @@ const actions = {
 };
 
 function render() {
+  const percentage = percentageOf(state.max, state.count);
+  const txtCountClassName =
+    percentage >= 75
+      ? "count text-danger"
+      : percentage >= 50
+      ? "count text-warning"
+      : "count";
+  const disabledMaxButton = percentage === 100;
+  const disabledMinButton = percentage === 0;
+
   txtCountDOM.innerText = state.count;
+  txtCountDOM.className = txtCountClassName;
   inputStepDOM.value = state.step;
   inputMinDOM.value = state.min;
   inputMaxDOM.value = state.max;
+
+  btnMaxDOM.disabled = disabledMaxButton;
+  btnMinDOM.disabled = disabledMinButton;
 }
 
 function setState(newState) {
@@ -81,3 +95,7 @@ inputMaxDOM.addEventListener("change", (e) => {
 });
 
 render();
+
+function percentageOf(source, target) {
+  return (target * 100) / source;
+}
