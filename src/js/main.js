@@ -15,30 +15,48 @@ const state = {
   step: 1,
 };
 
+const actions = {
+  increment() {
+    state.count = Math.min(options.max, state.count + state.step);
+  },
+  decrement() {
+    state.count = Math.max(options.min, state.count - state.step);
+  },
+  changeStep(step) {
+    state.step = step;
+  },
+  setCountToMin() {
+    state.count = options.min;
+  },
+  setCountToMax() {
+    state.count = options.max;
+  },
+};
+
 btnIncrementDOM.addEventListener("click", () => {
-  state.count = Math.min(options.max, state.count + state.step);
+  actions.increment();
 
   txtCountDOM.innerText = state.count;
 });
 
 btnDecrementDOM.addEventListener("click", () => {
-  state.count = Math.max(options.min, state.count - state.step);
+  actions.decrement();
 
   txtCountDOM.innerText = state.count;
 });
 
 btnMinDOM.addEventListener("click", () => {
-  state.count = options.min;
+  actions.setCountToMin();
 
   txtCountDOM.innerText = state.count;
 });
 
 btnMaxDOM.addEventListener("click", () => {
-  state.count = options.max;
+  actions.setCountToMax();
 
   txtCountDOM.innerText = state.count;
 });
 
 inputStepDOM.addEventListener("change", (e) => {
-  state.step = e.target.value;
+  actions.changeStep(parseInt(e.target.value));
 });
