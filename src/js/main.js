@@ -10,24 +10,35 @@ const options = {
   max: 10,
 };
 
+const state = {
+  count: 0,
+  step: 1,
+};
+
 btnIncrementDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = Math.min(
-    options.max,
-    parseInt(txtCountDOM.innerText) + parseInt(inputStepDOM.value)
-  );
+  state.count = Math.min(options.max, state.count + state.step);
+
+  txtCountDOM.innerText = state.count;
 });
 
 btnDecrementDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = Math.max(
-    options.min,
-    parseInt(txtCountDOM.innerText) - parseInt(inputStepDOM.value)
-  );
+  state.count = Math.max(options.min, state.count - state.step);
+
+  txtCountDOM.innerText = state.count;
 });
 
 btnMinDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = options.min;
+  state.count = options.min;
+
+  txtCountDOM.innerText = state.count;
 });
 
 btnMaxDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = options.max;
+  state.count = options.max;
+
+  txtCountDOM.innerText = state.count;
+});
+
+inputStepDOM.addEventListener("change", (e) => {
+  state.step = e.target.value;
 });
