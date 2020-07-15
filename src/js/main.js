@@ -5,24 +5,29 @@ const btnDecrementDOM = document.querySelector("#btn-dec");
 const txtCountDOM = document.querySelector("#txt-count");
 const inputStepDOM = document.querySelector("#input-step");
 
+const options = {
+  min: 0,
+  max: 10,
+};
+
 btnIncrementDOM.addEventListener("click", () => {
   txtCountDOM.innerText = Math.min(
-    10,
+    options.max,
     parseInt(txtCountDOM.innerText) + parseInt(inputStepDOM.value)
   );
 });
 
 btnDecrementDOM.addEventListener("click", () => {
   txtCountDOM.innerText = Math.max(
-    0,
+    options.min,
     parseInt(txtCountDOM.innerText) - parseInt(inputStepDOM.value)
   );
 });
 
 btnMinDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = 0;
+  txtCountDOM.innerText = options.min;
 });
 
 btnMaxDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = 10;
+  txtCountDOM.innerText = options.max;
 });
