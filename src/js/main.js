@@ -5,11 +5,11 @@ const btnDecrementDOM = document.querySelector("#btn-dec");
 const txtCountDOM = document.querySelector("#txt-count");
 
 btnIncrementDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = parseInt(txtCountDOM.innerText) + 1;
+  txtCountDOM.innerText = Math.min(10, parseInt(txtCountDOM.innerText) + 1);
 });
 
 btnDecrementDOM.addEventListener("click", () => {
-  txtCountDOM.innerText = parseInt(txtCountDOM.innerText) - 1;
+  txtCountDOM.innerText = Math.max(0, parseInt(txtCountDOM.innerText) - 1);
 });
 
 btnMinDOM.addEventListener("click", () => {
